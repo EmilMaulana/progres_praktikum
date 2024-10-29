@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="text-xl font-semibold leading-tight text-gray-800">
-            {{ __('Dashboard') }}
+        <h2 class="text-xl font-semibold leading-tight text-white">
+            {{ __('Create New Product') }}
         </h2>
     </x-slot>
     <div class="py-12">
@@ -9,9 +9,7 @@
             <div class="overflow-hidden bg-white shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
                     <div class="container mx-auto mt-5">
-                        <h2 class="mb-5 text-2xl font-bold">Create New Product</h2>
-                        <x-auth-session-status class="mb-4" :status="session('success')" />
-                            <form action="{{ route('product-store')}}" method="POST" class="space-y-4">
+                        <form action="{{ route('product-store')}}" method="POST" class="space-y-4">
                             @csrf <!-- Laravel CSRF protection -->
                             <div class="form-group">
                                 <label for="product_name" class="block text-sm font-medium text-gray-700">Product Name</label>
@@ -27,18 +25,20 @@
                                     <option value="box">Box</option>
                                 </select>
                             </div>
+                            <div class="form-group">
                                 <label for="type" class="block text-sm font-medium text-gray-700">Type</label>
-                                <input type="text" id="type" name="type" class="block w-full p-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required>
+                                <input type="text" id="type" name="type" class="block w-full border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required>
                             </div>
-                            <div class="form-group">
+                            </div>
+                            <div class="form-group mt-2">
                                 <label for="information" class="block text-sm font-medium text-gray-700">Information</label>
-                                <textarea id="information" name="information" rows="3" class="block w-full p-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"></textarea>
+                                <textarea id="information" name="information" rows="3" class="block w-full border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"></textarea>
                             </div>
-                            <div class="form-group">
+                            <div class="form-group mt-2">
                                 <label for="qty" class="block text-sm font-medium text-gray-700">Quantity</label>
                                 <input type="number" id="qty" name="qty" class="block w-full p-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required>
                             </div>
-                            <div class="form-group">
+                            <div class="form-group mt-2">
                                 <label for="producer" class="block text-sm font-medium text-gray-700">Producer</label>
                                 <input type="text" id="producer" name="producer" class="block w-full p-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required>
                             </div>

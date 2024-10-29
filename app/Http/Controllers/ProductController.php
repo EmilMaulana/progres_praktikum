@@ -43,7 +43,7 @@ class ProductController extends Controller
         //SAVE DATA 
         Product::create($validasi);
 
-        return redirect()->back()->with('success', 'Product created successfully!');
+        return redirect(route('product.list'))->with('success', 'Product created successfully!');
     }
 
     /**
@@ -59,15 +59,33 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        //
+        return view('product.edit', [
+            'product' => $product
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Product $product)
+    public function update(Request $request, $id)
     {
-        //
+        // Temukan produk berdasarkan ID
+        $product = Product::findOrFail($id);
+
+        // Validasi data 
+        $validasi = $request->validate([
+            'product_name' => 'required',
+            'unit' => 'required',
+            'type' => 'required',
+            'information' => 'required',
+            'qty' => 'required|integer|min:1', // Validasi jumlah harus integer dan lebih dari 0
+            'producer' => 'required',
+        ]);
+
+        // Update data produk
+        $product->update($validasi);
+
+        return redirect(route('product.list'))->with('success', 'Product updated successfully!');
     }
 
     /**
@@ -75,6 +93,14 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        //
+        try {
+            $product->delete();
+
+            // Redirect dengan pesan sukses setelah berhasil menghapus
+            return redirect()->route('product.list')->with('success', 'Product deleted successfully.');
+        } catch (\Exception $e) {
+            // Jika terjadi kesalahan, redirect dengan pesan error
+            return redirect()->route('product.list')->with('error', 'Failed to delete product.');
+        }
     }
 }

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SupplierController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -15,6 +16,14 @@ Route::get('/dashboard', function () {
 Route::get('/product', [ProductController::class, 'index'])->name('product.list');
 Route::get('/product/create', [ProductController::class, 'create'])->name('product.create');
 Route::post('/product/store', [ProductController::class, 'store'])->name('product-store');
+Route::get('/product/{product:id}/edit', [ProductController::class, 'edit'])->name('product.edit');
+Route::put('/product/{product:id}/edit', [ProductController::class, 'update'])->name('product.update');
+Route::delete('/product/{product:id}/delete', [ProductController::class, 'destroy'])->name('product.delete');
+
+Route::get('/supplier', [SupplierController::class, 'index'])->name('supplier.list');
+Route::get('/supplier/create', [SupplierController::class, 'create'])->name('supplier.create');
+Route::post('/supplier/store', [SupplierController::class, 'store'])->name('supplier.store');
+Route::post('/supplier/{product:id}/edit', [SupplierController::class, 'edit'])->name('supplier.edit');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

@@ -19,7 +19,17 @@
             </div>
 
             <!-- Data master Dropdown -->
-            <div class="hidden sm:flex sm:items-center sm:ms-6">
+            <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                <x-nav-link :href="route('product.list')" :active="request()->routeIs('product.list', 'product.create', 'product.edit')">
+                    {{ __('Product') }}
+                </x-nav-link>
+            </div>
+            <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                <x-nav-link :href="route('supplier.list')" :active="request()->routeIs('supplier.list', 'supplier.create')">
+                    {{ __('Supplier') }}
+                </x-nav-link>
+            </div>
+            {{-- <div class="hidden sm:flex sm:items-center sm:ms-6">
                 <x-dropdown align="right" width="48">
                     <x-slot name="trigger">
                         <button class="inline-flex items-center px-3 py-2 text-sm font-medium leading-4 text-white transition duration-150 ease-in-out  border border-transparent rounded-md  focus:outline-none" >
@@ -41,7 +51,7 @@
                         </x-dropdown-link>
                     </x-slot>
                 </x-dropdown>
-            </div>
+            </div> --}}
 
             <!-- Settings Dropdown -->
             <div class="hidden sm:flex sm:items-center sm:ms-6">
