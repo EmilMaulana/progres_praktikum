@@ -20,6 +20,7 @@ Route::get('/product/{product:id}/edit', [ProductController::class, 'edit'])->na
 Route::put('/product/{product:id}/edit', [ProductController::class, 'update'])->name('product.update');
 Route::delete('/product/{product:id}/delete', [ProductController::class, 'destroy'])->name('product.delete');
 Route::get('/product/excel/export', [ProductController::class, 'exportExcel'])->name('product.export');
+Route::get('/product/pdf/export', [ProductController::class, 'exportPdf'])->name('product.export.pdf');
 
 
 Route::get('/supplier', [SupplierController::class, 'index'])->name('supplier.list');
