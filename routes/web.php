@@ -23,7 +23,9 @@ Route::delete('/product/{product:id}/delete', [ProductController::class, 'destro
 Route::get('/supplier', [SupplierController::class, 'index'])->name('supplier.list');
 Route::get('/supplier/create', [SupplierController::class, 'create'])->name('supplier.create');
 Route::post('/supplier/store', [SupplierController::class, 'store'])->name('supplier.store');
-Route::post('/supplier/{product:id}/edit', [SupplierController::class, 'edit'])->name('supplier.edit');
+Route::get('/supplier/{supplier:id}/edit', [SupplierController::class, 'edit'])->name('supplier.edit');
+Route::put('/supplier/{supplier:id}/edit', [SupplierController::class, 'update'])->name('supplier.update');
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

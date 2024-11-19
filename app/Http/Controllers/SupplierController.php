@@ -57,15 +57,31 @@ class SupplierController extends Controller
      */
     public function edit(Supplier $supplier)
     {
-        //
+        return view('supplier.edit', [
+            'supplier' => $supplier
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Supplier $supplier)
+    public function update(Request $request, $id)
     {
-        //
+        // Temukan produk berdasarkan ID
+        $supplier = Supplier::findOrFail($id);
+
+        // Validasi data 
+        $validasi = $request->validate([
+            'supplier_name' => 'required',
+            'supplier_address' => 'required',
+            'phone' => 'required',
+            'comment' => 'required',
+        ]);
+
+        // Update data produk
+        $supplier->update($validasi);
+
+        return redirect(route('supplier.list'))->with('success', 'Supplier updated successfully!');
     }
 
     /**
